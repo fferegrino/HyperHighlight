@@ -41,11 +41,11 @@ For faster workflow, you can set up custom keyboard shortcuts:
 
 ## Feedback and Contributions
 
-Your feedback and contributions are welcome! Please feel free to submit issues or pull requests on our [GitHub repository](https://github.com/yourusername/hyperhighlight).
+Your feedback and contributions are welcome! Please feel free to submit issues or pull requests on our [GitHub repository](https://github.com/fferegrino/HyperHighlight).
 
 ## License
 
-This extension is released under the [MIT License](LICENSE).
+This extension is released under the [MIT License](./license).
 
 ---
 

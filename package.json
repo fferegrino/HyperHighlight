@@ -1,5 +1,5 @@
 {
-  "name": "hyperHighlight",
+  "name": "hyperhiglight",
   "displayName": "HyperHighlight",
   "description": "",
   "version": "0.0.1",
@@ -10,8 +10,12 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onLanguage"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fferegrino/HyperHighlight.git"
+  },
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
