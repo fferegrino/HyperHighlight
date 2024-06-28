@@ -2,8 +2,9 @@
   "name": "hyperhiglight",
   "displayName": "HyperHighlight",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "AntonioFeregrino",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -28,6 +29,11 @@
     "configuration": {
       "title": "HyperHighlight",
       "properties": {
+        "hyperHighlight.showHighlightColor": {
+          "type": "boolean",
+          "default": true,
+          "description": "If false, the highlight color will not be shown. Otherwise, the highlight color of your choice will be shown."
+        },
         "hyperHighlight.highlightColor": {
           "type": "string",
           "default": "#ffffff",
@@ -50,7 +56,8 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "package": "vsce package"
+    "package": "vsce package",
+    "format": "prettier --write 'src/**/*.ts'"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
@@ -61,6 +68,7 @@
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.4.0",
     "eslint": "^8.57.0",
+    "prettier": "^3.3.2",
     "typescript": "^5.4.5",
     "vsce": "^2.15.0"
   }
