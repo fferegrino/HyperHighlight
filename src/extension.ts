@@ -7,15 +7,32 @@ let disposable: vscode.Disposable | undefined;
 let decorationType: vscode.TextEditorDecorationType | undefined;
 let dimDecorationType: vscode.TextEditorDecorationType | undefined;
 let lastSelection: vscode.Selection | undefined;
+let statusBar: vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
-    let toggleCommand = vscode.commands.registerCommand('extension.hyperHighlight', () => {
+    hyperHighlightEnabled = context.globalState.get<boolean>('hyperHighlightEnabled', false);
+
+
+    // Step 1: Create a StatusBarItem
+    statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+
+    // Step 2: Set the initial text and tooltip for the StatusBarItem
+    statusBar.text = `HyperHighlight: ${hyperHighlightEnabled ? 'Enabled' : 'Disabled'}`;
+    statusBar.tooltip = "Click to toggle HyperHighlight";
+    statusBar.command = 'extension.hyperHighlight'; // Assuming 'extension.hyperHighlight' is the command ID
+
+    // // Step 3: Show the StatusBarItem
+    statusBar.show();
+
+    let toggleCommand = vscode.commands.registerCommand('extension.hyperHighlight', async () => {
         hyperHighlightEnabled = !hyperHighlightEnabled;
 
-		// console.log('Auto Copy: ', hyperHighlightEnabled);
+		// Save the updated state to globalState
+        await context.globalState.update('hyperHighlightEnabled', hyperHighlightEnabled);
 
         vscode.window.showInformationMessage(`HyperHighlight: ${hyperHighlightEnabled ? 'Enabled' : 'Disabled'}`);
         
+        statusBar.text = `HyperHighlight: ${hyperHighlightEnabled ? 'Enabled' : 'Disabled'}`;
         if (hyperHighlightEnabled) {
             disposable = vscode.window.onDidChangeTextEditorSelection(handleSelectionChange);
         }else { 
@@ -26,6 +43,16 @@ export function activate(context: vscode.ExtensionContext) {
 			}
         }
     });
+
+    if (hyperHighlightEnabled) {
+        disposable = vscode.window.onDidChangeTextEditorSelection(handleSelectionChange);
+    }else { 
+
+        resetEditor(vscode.window.activeTextEditor!);
+        if (disposable) {
+        disposable.dispose();
+        }
+    }
 
     context.subscriptions.push(toggleCommand);
 }
