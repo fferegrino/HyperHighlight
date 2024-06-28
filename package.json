@@ -24,7 +24,24 @@
         "command": "extension.hyperHighlight",
         "title": "HyperHighlight: Enable/Disable"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "HyperHighlight",
+      "properties": {
+        "hyperHighlight.highlightColor": {
+          "type": "string",
+          "default": "#ffffff",
+          "description": "Custom color for highlighting text."
+        },
+        "hyperHighlight.dimOpacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.4,
+          "description": "Opacity for dimming the rest of the document."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

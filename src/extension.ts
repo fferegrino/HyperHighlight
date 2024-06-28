@@ -8,6 +8,8 @@ let decorationType: vscode.TextEditorDecorationType | undefined;
 let dimDecorationType: vscode.TextEditorDecorationType | undefined;
 let lastSelection: vscode.Selection | undefined;
 let statusBar: vscode.StatusBarItem;
+let dimOpacity: number;
+let backgroundColor: string;
 
 export function activate(context: vscode.ExtensionContext) {
     hyperHighlightEnabled = context.globalState.get<boolean>('hyperHighlightEnabled', false);
@@ -89,18 +91,22 @@ function deactivateHighlight(editor: vscode.TextEditor) {
 
 function highlightText(editor: vscode.TextEditor, selection: vscode.Selection) {
     deactivateHighlight(editor);
+
+    const config = vscode.workspace.getConfiguration('hyperHighlight');
+
+  backgroundColor = config.get<string>('highlightColor') || 'yellow';
+  dimOpacity = config.get<number>('dimOpacity') || 0.5;
     
-    const customColor = '#ffffff';
     // Create decoration for selected text
     decorationType = vscode.window.createTextEditorDecorationType({
-        backgroundColor: customColor,
+        backgroundColor: backgroundColor,
         isWholeLine: true,
         fontWeight: 'bold'
     });
 
     // Create decoration for dimming the rest of the document
     dimDecorationType = vscode.window.createTextEditorDecorationType({
-        opacity: '0.4',
+        opacity: `${dimOpacity}`,
     });
 
     // Apply decorations
@@ -141,6 +147,22 @@ function resetEditor(editor: vscode.TextEditor) {
     // Force a re-render of the editor
     vscode.commands.executeCommand('editor.action.triggerRender');
 }
+
+
+function loadSettings() {
+
+
+    const config = vscode.workspace.getConfiguration('hyperHighlight');
+
+  backgroundColor = config.get<string>('highlightColor') || 'yellow';
+  dimOpacity = config.get<number>('dimOpacity') || 0.5;
+}
+
+vscode.workspace.onDidChangeConfiguration(event => {
+  if (event.affectsConfiguration('hyperHighlight')) {
+    loadSettings();
+  }
+});
 
 
 export function deactivate() {
