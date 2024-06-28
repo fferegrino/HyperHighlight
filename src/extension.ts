@@ -62,16 +62,18 @@ function deactivateHighlight(editor: vscode.TextEditor) {
 
 function highlightText(editor: vscode.TextEditor, selection: vscode.Selection) {
     deactivateHighlight(editor);
-
+    
+    const customColor = '#ffffff';
     // Create decoration for selected text
     decorationType = vscode.window.createTextEditorDecorationType({
-        textDecoration: 'none; font-size: 1.5em; line-height: 2em;',
+        backgroundColor: customColor,
+        isWholeLine: true,
         fontWeight: 'bold'
     });
 
     // Create decoration for dimming the rest of the document
     dimDecorationType = vscode.window.createTextEditorDecorationType({
-        opacity: '0.5'
+        opacity: '0.4',
     });
 
     // Apply decorations
