@@ -3,6 +3,7 @@
   "displayName": "HyperHighlight",
   "description": "",
   "version": "0.0.1",
+  "publisher": "AntonioFeregrino",
   "engines": {
     "vscode": "^1.90.0"
   },
