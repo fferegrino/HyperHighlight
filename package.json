@@ -1,8 +1,8 @@
 {
   "name": "hyperhiglight",
   "displayName": "HyperHighlight",
-  "description": "",
-  "version": "0.0.2",
+  "description": "Designed to enhance your live code demonstrations. It allows you to easily highlight specific parts of your code while dimming the rest, making it perfect for presentations, tutorials, and live coding sessions.",
+  "version": "0.0.3",
   "publisher": "AntonioFeregrino",
   "icon": "images/icon.png",
   "engines": {
@@ -29,15 +29,10 @@
     "configuration": {
       "title": "HyperHighlight",
       "properties": {
-        "hyperHighlight.showHighlightColor": {
-          "type": "boolean",
-          "default": true,
-          "description": "If false, the highlight color will not be shown. Otherwise, the highlight color of your choice will be shown."
-        },
-        "hyperHighlight.highlightColor": {
-          "type": "string",
-          "default": "#ffffff",
-          "description": "Custom color for highlighting text."
+        "hyperHighlight.fontSize": {
+          "type": "number",
+          "default": 1,
+          "description": "(Experimental) Font size for highlighted text relative to the current font size."
         },
         "hyperHighlight.dimOpacity": {
           "type": "number",

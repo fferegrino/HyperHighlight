@@ -8,8 +8,7 @@ let dimDecorationType: vscode.TextEditorDecorationType | undefined;
 let lastSelection: vscode.Selection | undefined;
 let statusBar: vscode.StatusBarItem;
 let dimOpacity: number;
-let backgroundColor: string;
-let showHighlightColor: boolean;
+let fontSize: number;
 
 export function activate(context: vscode.ExtensionContext) {
   hyperHighlightEnabled = context.globalState.get<boolean>(
@@ -97,34 +96,18 @@ function deactivateHighlight(editor: vscode.TextEditor) {
   }
   lastSelection = undefined;
 }
-// function getThemeColor(colorId: string): string | undefined {
-//     // Access the color theme settings from the current configuration
-//     const colorThemeSettings = vscode.workspace.getConfiguration('workbench.colorCustomizations');
-//     const config = vscode.workspace.getConfiguration();
-//     const currentThemeName = config.get<string>('workbench.colorTheme');
-//     // Retrieve the specific color from the settings
-//     const colorValue = colorThemeSettings.get<string>(colorId);
-//     console.log(`Color value for ${colorId}: ${colorValue}`);
-//     console.log(`Current theme: ${currentThemeName}`);
-//     return colorValue;
-// }
 
 function highlightText(editor: vscode.TextEditor, selection: vscode.Selection) {
   deactivateHighlight(editor);
 
   const config = vscode.workspace.getConfiguration("hyperHighlight");
 
-  //   const themeBackground = getThemeColor('editor.background') || "white";
-
-  backgroundColor = config.get<string>("highlightColor") || "yellow";
   dimOpacity = config.get<number>("dimOpacity") || 0.5;
-  showHighlightColor = config.get<boolean>("showHighlightColor") || false;
-
-  // backgroundColor = showHighlightColor ? backgroundColor : themeBackground;
+  fontSize = config.get<number>("fontSize") || 1;
 
   // Create decoration for selected text
   decorationType = vscode.window.createTextEditorDecorationType({
-    backgroundColor: backgroundColor,
+    textDecoration: `none; font-size: ${fontSize}em;`,
     isWholeLine: true,
     fontWeight: "bold",
   });
@@ -174,11 +157,8 @@ function resetEditor(editor: vscode.TextEditor) {
 
 function loadSettings() {
   const config = vscode.workspace.getConfiguration("hyperHighlight");
-
-  backgroundColor = config.get<string>("highlightColor") || "yellow";
   dimOpacity = config.get<number>("dimOpacity") || 0.5;
-
-  showHighlightColor = config.get<boolean>("showHighlightColor") || false;
+  fontSize = config.get<number>("fontSize") || 1;
 }
 
 vscode.workspace.onDidChangeConfiguration((event) => {
