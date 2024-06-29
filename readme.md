@@ -28,16 +28,8 @@ To remove the highlight effect, use the command "HyperHighlight: Clear Highlight
 
 You can customize HyperHighlight in your VS Code settings:
 
-- `hyperhighlight.highlightColor`: Set the color for highlighted code (default: "#FFFF00")
-- `hyperhighlight.dimOpacity`: Set the opacity level for dimmed code (default: 0.3)
-
-## Keyboard Shortcuts
-
-For faster workflow, you can set up custom keyboard shortcuts:
-
-1. Open the Keyboard Shortcuts editor (File > Preferences > Keyboard Shortcuts)
-2. Search for "HyperHighlight"
-3. Assign your preferred key bindings to the HyperHighlight commands
+- `hyperHighlight.fontSize`: Set the font size relative to the current font size (default: 1)
+- `hyperhighlight.dimOpacity`: Set the opacity level for dimmed code (default: 0.4)
 
 ## Feedback and Contributions
 
