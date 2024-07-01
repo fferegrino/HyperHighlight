@@ -2,7 +2,7 @@
   "name": "hyperhiglight",
   "displayName": "HyperHighlight",
   "description": "Designed to enhance your live code demonstrations. It allows you to easily highlight specific parts of your code while dimming the rest, making it perfect for presentations, tutorials, and live coding sessions.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "AntonioFeregrino",
   "icon": "images/icon.png",
   "engines": {
