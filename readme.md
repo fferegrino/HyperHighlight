@@ -1,20 +1,14 @@
 # HyperHighlight
 
+<img src="https://github.com/fferegrino/HyperHighlight/assets/1820946/70401740-65a7-4f7a-af62-16e1d2645e5a" width="600px" />
+
 HyperHighlight is a Visual Studio Code extension designed to enhance your live code demonstrations. It allows you to easily highlight specific parts of your code while dimming the rest, making it perfect for presentations, tutorials, and live coding sessions.
-
-<div align="center">
-<a href="https://github.githistory.xyz/torvalds/linux/blob/master/kernel/up.c">
-<img alt="demo" src="https://ik.imagekit.io/thatcsharpguy/other_sites/github/demo-1.gif" width="600" />
-</a>
-</div>
-
-
 
 ## Features
 
 - Easily highlight selected code snippets
 - Automatically dim non-highlighted code
-- Customizable highlight and dim colors
+- Customizable highlight and dim colours
 - Quick toggle for enabling/disabling the highlight effect
 
 ## Installation
